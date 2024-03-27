@@ -1,0 +1,3 @@
+package ru.anydevprojects.educationcards.deckViewer.domain
+
+interface DeckViewerRepository
