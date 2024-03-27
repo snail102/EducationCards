@@ -12,7 +12,7 @@ import ru.anydevprojects.educationcards.rootBottomNav.RootBottomScreen
 fun RootNavHost(navController: NavHostController) {
     NavHost(navController = navController, startDestination = Screens.BottomNavGraph.route) {
         composable(route = Screens.BottomNavGraph.route) {
-            RootBottomScreen()
+            RootBottomScreen(rootNavController = navController)
         }
         deckViewerNavGraph(navController = navController)
     }

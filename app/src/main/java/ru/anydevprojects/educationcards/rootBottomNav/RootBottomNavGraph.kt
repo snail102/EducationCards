@@ -11,7 +11,7 @@ import ru.anydevprojects.educationcards.myDecks.presentation.MyDecksScreen
 import ru.anydevprojects.educationcards.profile.presentation.ProfileScreen
 
 @Composable
-fun RootBottomNavGraph(navController: NavHostController) {
+fun RootBottomNavGraph(navController: NavHostController, rootNavController: NavHostController) {
     NavHost(
         navController = navController,
         route = Screens.BottomNavGraph.route,
@@ -30,7 +30,7 @@ fun RootBottomNavGraph(navController: NavHostController) {
         }
     ) {
         composable(route = Screens.MyDecks.route) {
-            MyDecksScreen()
+            MyDecksScreen(navController = rootNavController)
         }
         composable(route = Screens.Profile.route) {
             ProfileScreen()

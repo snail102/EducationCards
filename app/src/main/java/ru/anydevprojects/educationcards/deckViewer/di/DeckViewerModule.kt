@@ -8,5 +8,5 @@ import ru.anydevprojects.educationcards.deckViewer.presentation.DeckViewerViewMo
 
 val deckViewerModule = module {
     factory<DeckViewerRepository> { DeckViewerRepositoryImpl(get(), get()) }
-    viewModel<DeckViewerViewModel> { DeckViewerViewModel(get()) }
+    viewModel<DeckViewerViewModel> { DeckViewerViewModel(get(), get()) }
 }

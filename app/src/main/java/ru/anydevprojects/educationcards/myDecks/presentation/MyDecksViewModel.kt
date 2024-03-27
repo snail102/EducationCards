@@ -40,7 +40,7 @@ class MyDecksViewModel(
     override fun onIntent(intent: IntentMyDecks) {
         when (intent) {
             IntentMyDecks.OnImportNewDeckClick -> showImportDeck()
-            is IntentMyDecks.OnDeckClick -> openDeck()
+            is IntentMyDecks.OnDeckClick -> openDeck(intent.id)
             is IntentMyDecks.SelectFile -> importDeck(intent.uri)
         }
     }
@@ -51,9 +51,9 @@ class MyDecksViewModel(
         }
     }
 
-    private fun openDeck() {
+    private fun openDeck(deckId: String) {
         viewModelScope.launch {
-            emitEvent(EventMyDecks.OpenDeck)
+            emitEvent(EventMyDecks.OpenDeck(deckId))
         }
     }
 

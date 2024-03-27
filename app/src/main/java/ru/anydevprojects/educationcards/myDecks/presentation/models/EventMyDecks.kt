@@ -4,7 +4,7 @@ sealed interface EventMyDecks {
 
     data object ShowImportNewDeck : EventMyDecks
 
-    data object OpenDeck : EventMyDecks
+    data class OpenDeck(val deckId: String) : EventMyDecks
 
     data object ShowErrorIncorrectFileExtension : EventMyDecks
     data object ShowErrorGetSelectedFile : EventMyDecks

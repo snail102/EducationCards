@@ -30,14 +30,16 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
+import androidx.navigation.NavController
 import org.koin.androidx.compose.koinViewModel
 import ru.anydevprojects.educationcards.core.mvi.CollectEvent
+import ru.anydevprojects.educationcards.core.navigation.Screens
 import ru.anydevprojects.educationcards.myDecks.presentation.models.EventMyDecks
 import ru.anydevprojects.educationcards.myDecks.presentation.models.IntentMyDecks
 import ru.anydevprojects.educationcards.myDecks.presentation.models.StateMyDecks
 
 @Composable
-fun MyDecksScreen(viewModel: MyDecksViewModel = koinViewModel()) {
+fun MyDecksScreen(viewModel: MyDecksViewModel = koinViewModel(), navController: NavController) {
     val state = viewModel.state.collectAsState()
 
     val pickFileLauncher = rememberLauncherForActivityResult(
@@ -57,7 +59,8 @@ fun MyDecksScreen(viewModel: MyDecksViewModel = koinViewModel()) {
                 pickFileLauncher.launch("*/*")
             }
 
-            EventMyDecks.OpenDeck -> {
+            is EventMyDecks.OpenDeck -> {
+                navController.navigate(Screens.DeckViewer.getRouteWithArgs(event.deckId))
             }
 
             EventMyDecks.ShowErrorGetSelectedFile -> {
@@ -97,6 +100,7 @@ private fun MyDecksContent(
         } else {
             LazyColumn(
                 modifier = Modifier
+                    .fillMaxSize()
                     .padding(it)
                     .padding(16.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp)
@@ -109,7 +113,9 @@ private fun MyDecksContent(
                 ) { deck ->
                     CardMyDeck(
                         name = deck.name,
-                        onClick = onDeckClick
+                        onClick = {
+                            onDeckClick(deck.id)
+                        }
                     )
                 }
             }
@@ -141,14 +147,14 @@ private fun AppBarMyDecks(onImportNewDeckClick: () -> Unit) {
 }
 
 @Composable
-private fun CardMyDeck(name: String, onClick: (String) -> Unit) {
+private fun CardMyDeck(name: String, onClick: () -> Unit) {
     Card(
         modifier = Modifier
             .fillMaxWidth()
             .height(100.dp),
         shape = RoundedCornerShape(16.dp),
         onClick = {
-            onClick(name)
+            onClick()
         }
     ) {
         Column(

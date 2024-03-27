@@ -27,12 +27,15 @@ import androidx.navigation.compose.rememberNavController
 
 @SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @Composable
-fun RootBottomScreen(navController: NavHostController = rememberNavController()) {
+fun RootBottomScreen(
+    navController: NavHostController = rememberNavController(),
+    rootNavController: NavHostController
+) {
     Scaffold(
         bottomBar = { BottomBar(navController = navController) }
     ) {
         Column {
-            RootBottomNavGraph(navController = navController)
+            RootBottomNavGraph(navController = navController, rootNavController = rootNavController)
         }
     }
 }
