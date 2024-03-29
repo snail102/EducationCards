@@ -60,7 +60,12 @@ fun MyDecksScreen(viewModel: MyDecksViewModel = koinViewModel(), navController: 
             }
 
             is EventMyDecks.OpenDeck -> {
-                navController.navigate(Screens.DeckViewer.getRouteWithArgs(event.deckId))
+                navController.navigate(
+                    Screens.DeckViewer.getRouteWithArgs(
+                        deckId = event.deckId,
+                        deckName = event.deckName
+                    )
+                )
             }
 
             EventMyDecks.ShowErrorGetSelectedFile -> {
@@ -73,8 +78,8 @@ fun MyDecksScreen(viewModel: MyDecksViewModel = koinViewModel(), navController: 
 
     MyDecksContent(
         state = state,
-        onDeckClick = {
-            viewModel.onIntent(IntentMyDecks.OnDeckClick(id = it))
+        onDeckClick = { id, name ->
+            viewModel.onIntent(IntentMyDecks.OnDeckClick(id = id, name = name))
         },
         onImportNewDeckClick = {
             viewModel.onIntent(IntentMyDecks.OnImportNewDeckClick)
@@ -85,7 +90,7 @@ fun MyDecksScreen(viewModel: MyDecksViewModel = koinViewModel(), navController: 
 @Composable
 private fun MyDecksContent(
     state: State<StateMyDecks>,
-    onDeckClick: (String) -> Unit,
+    onDeckClick: (String, String) -> Unit,
     onImportNewDeckClick: () -> Unit
 ) {
     Scaffold(
@@ -114,7 +119,7 @@ private fun MyDecksContent(
                     CardMyDeck(
                         name = deck.name,
                         onClick = {
-                            onDeckClick(deck.id)
+                            onDeckClick(deck.id, deck.name)
                         }
                     )
                 }

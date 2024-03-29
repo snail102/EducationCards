@@ -6,7 +6,7 @@ sealed interface IntentMyDecks {
 
     data object OnImportNewDeckClick : IntentMyDecks
 
-    data class OnDeckClick(val id: String) : IntentMyDecks
+    data class OnDeckClick(val id: String, val name: String) : IntentMyDecks
 
     data class SelectFile(val uri: Uri) : IntentMyDecks
 }

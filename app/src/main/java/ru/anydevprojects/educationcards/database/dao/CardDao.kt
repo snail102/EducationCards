@@ -13,11 +13,17 @@ interface CardDao {
     @Insert
     suspend fun insertAll(cards: List<CardEntity>)
 
+    @Query("SELECT * FROM cardentity WHERE uid IN (:cardId)")
+    suspend fun getCardById(cardId: String): CardEntity
+
     @Query("SELECT * FROM cardentity WHERE deck_id IN (:deckId)")
     suspend fun getAllCardByDeckId(deckId: String): List<CardEntity>
 
     @Query("SELECT * FROM cardentity WHERE deck_id IN (:deckId)")
     fun getAllCardByDeckIdFlow(deckId: String): Flow<List<CardEntity>>
+
+    @Query("DELETE FROM cardentity WHERE uid IN (:cardId)")
+    suspend fun deleteById(cardId: String)
 
     @Delete
     suspend fun delete(cardEntity: CardEntity)

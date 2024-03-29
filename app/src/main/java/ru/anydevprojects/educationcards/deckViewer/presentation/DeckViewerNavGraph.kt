@@ -24,7 +24,12 @@ fun NavGraphBuilder.deckViewerNavGraph(navController: NavController) {
             val deckId = backStackEntry.arguments?.getString(
                 Screens.DeckViewer.deckIdArg
             ) ?: throw Exception("Empty argument deckId")
-            DeckViewerScreen(deckId = deckId)
+
+            val deckName = backStackEntry.arguments?.getString(
+                Screens.DeckViewer.deckNameArg
+            ) ?: throw Exception("Empty argument deckName")
+
+            DeckViewerScreen(deckId = deckId, deckName = deckName, navController = navController)
         }
     }
 }

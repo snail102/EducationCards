@@ -4,6 +4,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.flowOn
 import kotlinx.coroutines.flow.map
+import org.jsoup.Jsoup
 import ru.anydevprojects.educationcards.database.dao.CardDao
 import ru.anydevprojects.educationcards.database.dao.DeckDao
 import ru.anydevprojects.educationcards.deckViewer.domain.DeckViewerRepository
@@ -27,7 +28,8 @@ class DeckViewerRepositoryImpl(
         return cardDao.getAllCardByDeckIdFlow(deckId = deckId).flowOn(Dispatchers.IO).map { cards ->
             cards.map {
                 Card(
-                    front = it.front,
+                    id = it.uid,
+                    front = Jsoup.parse(it.front).text(),
                     back = it.back
                 )
             }

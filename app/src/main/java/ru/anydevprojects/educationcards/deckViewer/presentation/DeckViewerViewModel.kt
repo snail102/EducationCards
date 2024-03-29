@@ -13,11 +13,12 @@ import ru.anydevprojects.educationcards.deckViewer.presentation.models.StateDeck
 
 class DeckViewerViewModel(
     private val deckViewerRepository: DeckViewerRepository,
-    private val deckId: String
+    private val deckId: String,
+    private val deckName: String
 ) :
     ViewModel(),
     MVI<StateDeckViewer, IntentDeckViewer, EventDeckViewer> by mvi(
-        StateDeckViewer(isLoading = true)
+        StateDeckViewer(isLoading = true, name = deckName)
     ) {
 
     init {

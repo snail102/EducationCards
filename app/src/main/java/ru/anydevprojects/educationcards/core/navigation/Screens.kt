@@ -8,7 +8,11 @@ sealed interface Screens {
     }
 
     data object DeckViewerNavGraph : Screens {
-        override val route: String = "beckViewerNavGraph"
+        override val route: String = "deckViewerNavGraph"
+    }
+
+    data object CardEditorNavGraph : Screens {
+        override val route: String = "cardEditorNavGraph"
     }
 
     data object Profile : Screens {
@@ -20,12 +24,23 @@ sealed interface Screens {
     }
 
     data object DeckViewer : Screens {
-        override val route: String = "deckViewer/{deckId}"
+        override val route: String = "deckViewer/{deckId}/{deckName}"
 
         val deckIdArg: String = "deckId"
+        val deckNameArg: String = "deckName"
 
-        fun getRouteWithArgs(deckId: String): String {
-            return "deckViewer/$deckId"
+        fun getRouteWithArgs(deckId: String, deckName: String): String {
+            return "deckViewer/$deckId/$deckName"
+        }
+    }
+
+    data object CardEditor : Screens {
+        override val route: String = "cardEditor/{cardId}"
+
+        val cardIdArg: String = "cardId"
+
+        fun getRouteWithArgs(cardId: String): String {
+            return "cardEditor/$cardId"
         }
     }
 }
