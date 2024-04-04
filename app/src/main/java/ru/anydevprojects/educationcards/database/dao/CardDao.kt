@@ -22,6 +22,9 @@ interface CardDao {
     @Query("SELECT * FROM cardentity WHERE deck_id IN (:deckId)")
     fun getAllCardByDeckIdFlow(deckId: String): Flow<List<CardEntity>>
 
+    @Query("UPDATE cardentity SET front = :front, back = :back WHERE uid IN (:cardId)")
+    suspend fun updateById(cardId: String, front: String, back: String)
+
     @Query("DELETE FROM cardentity WHERE uid IN (:cardId)")
     suspend fun deleteById(cardId: String)
 

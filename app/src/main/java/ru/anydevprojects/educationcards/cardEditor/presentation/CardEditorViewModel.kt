@@ -23,14 +23,36 @@ class CardEditorViewModel(
             val card = cardEditorRepository.getCardById(cardId = cardId)
             updateState {
                 copy(
-                    isLoading = false,
-                    front = card.front,
-                    back = card.back
+                    isLoading = false
                 )
             }
+            lastState.frontStateRichText.setHtml(card.front)
+            lastState.backStateRichText.setHtml(card.back)
         }
     }
 
     override fun onIntent(intent: IntentCardEditor) {
+        when (intent) {
+            IntentCardEditor.OnSaveCardClick -> saveCard()
+        }
+    }
+
+    private fun saveCard() {
+        updateState {
+            copy(
+                isLoading = true
+            )
+        }
+
+        viewModelScope.launch {
+            cardEditorRepository.updateCard(
+                cardId = cardId,
+                front = lastState.frontStateRichText.toHtml(),
+                back = lastState.backStateRichText.toHtml()
+            )
+            emitEvent(
+                EventCardEditor.CloseScreen
+            )
+        }
     }
 }

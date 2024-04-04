@@ -8,6 +8,7 @@ import ru.anydevprojects.educationcards.cardEditor.presentation.cardEditorNavGra
 import ru.anydevprojects.educationcards.core.navigation.Screens
 import ru.anydevprojects.educationcards.deckViewer.presentation.deckViewerNavGraph
 import ru.anydevprojects.educationcards.rootBottomNav.RootBottomScreen
+import ru.anydevprojects.educationcards.studyCards.presentation.studyCardsNavGraph
 
 @Composable
 fun RootNavHost(navController: NavHostController) {
@@ -17,5 +18,6 @@ fun RootNavHost(navController: NavHostController) {
         }
         deckViewerNavGraph(navController = navController)
         cardEditorNavGraph(navController = navController)
+        studyCardsNavGraph(navController = navController)
     }
 }

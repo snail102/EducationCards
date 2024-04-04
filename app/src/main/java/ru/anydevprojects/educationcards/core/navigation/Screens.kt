@@ -15,6 +15,10 @@ sealed interface Screens {
         override val route: String = "cardEditorNavGraph"
     }
 
+    data object StudyCardsNavGraph : Screens {
+        override val route: String = "studyCardsNavGraph"
+    }
+
     data object Profile : Screens {
         override val route: String = "profile"
     }
@@ -31,6 +35,16 @@ sealed interface Screens {
 
         fun getRouteWithArgs(deckId: String, deckName: String): String {
             return "deckViewer/$deckId/$deckName"
+        }
+    }
+
+    data object StudyCards : Screens {
+        override val route: String = "studyCards/{deckId}"
+
+        val deckIdArg: String = "deckId"
+
+        fun getRouteWithArgs(deckId: String): String {
+            return "studyCards/$deckId"
         }
     }
 

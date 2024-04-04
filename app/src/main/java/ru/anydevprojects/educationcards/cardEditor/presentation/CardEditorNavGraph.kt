@@ -25,7 +25,7 @@ fun NavGraphBuilder.cardEditorNavGraph(navController: NavController) {
                 Screens.CardEditor.cardIdArg
             ) ?: throw Exception("Empty argument cardId")
 
-            CardEditorScreen(cardId = cardId)
+            CardEditorScreen(cardId = cardId, navController = navController)
         }
     }
 }

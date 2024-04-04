@@ -20,4 +20,8 @@ class CardEditorRepositoryImpl(
     override suspend fun deleteCard(cardId: String) {
         cardDao.deleteById(cardId = cardId)
     }
+
+    override suspend fun updateCard(cardId: String, front: String, back: String) {
+        cardDao.updateById(cardId = cardId, front = front, back = back)
+    }
 }

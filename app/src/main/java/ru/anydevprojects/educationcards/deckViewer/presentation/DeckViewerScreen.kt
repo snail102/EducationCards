@@ -51,6 +51,9 @@ fun DeckViewerScreen(
         stateContent = state,
         onCardClick = { card: Card ->
             navController.navigate(Screens.CardEditor.getRouteWithArgs(cardId = card.id))
+        },
+        onStartStudyClick = {
+            navController.navigate(Screens.StudyCards.getRouteWithArgs(deckId))
         }
     )
 }
@@ -67,7 +70,11 @@ private fun ProgressLoading() {
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-private fun DeckViewerContent(stateContent: State<StateDeckViewer>, onCardClick: (Card) -> Unit) {
+private fun DeckViewerContent(
+    stateContent: State<StateDeckViewer>,
+    onCardClick: (Card) -> Unit,
+    onStartStudyClick: () -> Unit
+) {
     val scrollBehavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior(
         rememberTopAppBarState()
     )
@@ -95,7 +102,7 @@ private fun DeckViewerContent(stateContent: State<StateDeckViewer>, onCardClick:
                         .padding(16.dp)
                         .fillMaxWidth()
                         .padding(16.dp),
-                    onClick = { }
+                    onClick = onStartStudyClick
                 ) {
                     Text(text = "Start")
                 }

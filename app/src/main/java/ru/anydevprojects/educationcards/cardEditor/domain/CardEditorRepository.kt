@@ -7,4 +7,6 @@ interface CardEditorRepository {
     suspend fun getCardById(cardId: String): Card
 
     suspend fun deleteCard(cardId: String)
+
+    suspend fun updateCard(cardId: String, front: String, back: String)
 }
