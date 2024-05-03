@@ -19,6 +19,9 @@ interface CardDao {
     @Query("SELECT * FROM cardentity WHERE deck_id IN (:deckId)")
     suspend fun getAllCardByDeckId(deckId: String): List<CardEntity>
 
+    @Query("SELECT * FROM cardentity WHERE deck_id IN (:deckId) LIMIT :countCards")
+    suspend fun getSomeCardsByDeckId(deckId: String, countCards: Int): List<CardEntity>
+
     @Query("SELECT * FROM cardentity WHERE deck_id IN (:deckId)")
     fun getAllCardByDeckIdFlow(deckId: String): Flow<List<CardEntity>>
 
