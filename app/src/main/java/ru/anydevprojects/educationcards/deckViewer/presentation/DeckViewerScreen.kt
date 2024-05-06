@@ -88,13 +88,13 @@ private fun DeckViewerContent(
                 scrollBehavior = scrollBehavior
             )
         }
-    ) {
+    ) { paddingValues ->
         if (state.isLoading) {
             ProgressLoading()
         } else {
             Column(
                 modifier = Modifier
-                    .padding(it)
+                    .padding(top = paddingValues.calculateTopPadding())
                     .fillMaxSize()
             ) {
                 Button(

@@ -2,6 +2,7 @@ package ru.anydevprojects.educationcards.studyCards.presentation
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.mohamedrejeb.richeditor.model.RichTextState
 import kotlinx.coroutines.launch
 import ru.anydevprojects.educationcards.core.mvi.MVI
 import ru.anydevprojects.educationcards.core.mvi.mvi
@@ -23,6 +24,9 @@ class StudyCardsViewModel(
         )
     ) {
 
+    private val frontRichTextState: RichTextState = RichTextState()
+    private val backRichTextState: RichTextState = RichTextState()
+
     private val cards: MutableList<Card> = mutableListOf()
     private var currentCardPosition: Int = 0
 
@@ -39,12 +43,18 @@ class StudyCardsViewModel(
 
             this@StudyCardsViewModel.cards.addAll(cardsFromDb)
 
+            frontRichTextState.setHtml(cards[currentCardPosition].front)
+            val front = frontRichTextState.annotatedString
+
+            backRichTextState.setHtml(cards[currentCardPosition].back)
+            val back = backRichTextState.annotatedString
+
             updateState {
                 copy(
                     isLoading = false,
                     currentNumberCard = currentCardPosition + 1,
-                    front = cards[currentCardPosition].front,
-                    back = cards[currentCardPosition].back
+                    front = front,
+                    back = back
                 )
             }
         }
@@ -66,12 +76,18 @@ class StudyCardsViewModel(
                         EventStudyCards.OpenFinishScreen
                     )
                 } else {
+                    frontRichTextState.setHtml(cards[currentCardPosition].front)
+                    val front = frontRichTextState.annotatedString
+
+                    backRichTextState.setHtml(cards[currentCardPosition].back)
+                    val back = backRichTextState.annotatedString
+
                     updateState {
                         copy(
                             showCardBack = false,
                             currentNumberCard = currentCardPosition + 1,
-                            front = cards[currentCardPosition].front,
-                            back = cards[currentCardPosition].back
+                            front = front,
+                            back = back
                         )
                     }
                 }
