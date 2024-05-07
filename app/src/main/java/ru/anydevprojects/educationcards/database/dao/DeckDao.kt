@@ -12,13 +12,13 @@ interface DeckDao {
     @Insert
     suspend fun insert(deckEntity: DeckEntity)
 
-    @Query("SELECT * FROM DeckEntity WHERE uid=:id")
+    @Query("SELECT * FROM deckentity WHERE uid=:id")
     suspend fun findById(id: String): DeckEntity?
 
-    @Query("SELECT * FROM DeckEntity WHERE uid=:id")
+    @Query("SELECT * FROM deckentity WHERE uid=:id")
     fun findByIdFlow(id: String): Flow<DeckEntity>
 
-    @Query("SELECT * FROM DeckEntity")
+    @Query("SELECT * FROM deckentity")
     fun getAllDecks(): Flow<List<DeckEntity>>
 
     @Delete

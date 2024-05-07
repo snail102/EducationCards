@@ -181,6 +181,7 @@ private fun HelpMessage(modifier: Modifier = Modifier) {
             contentDescription = "tap for show answer"
         )
         Text(
+            modifier = Modifier.padding(top = 16.dp),
             text = "Нажмите для отображения ответа",
             textAlign = TextAlign.Center,
             style = TextStyle(color = Color.Gray, fontSize = 14.sp)
