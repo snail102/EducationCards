@@ -90,7 +90,7 @@ fun MyDecksScreen(viewModel: MyDecksViewModel = koinViewModel(), navController: 
 @Composable
 private fun MyDecksContent(
     state: State<StateMyDecks>,
-    onDeckClick: (String, String) -> Unit,
+    onDeckClick: (Long, String) -> Unit,
     onImportNewDeckClick: () -> Unit
 ) {
     Scaffold(

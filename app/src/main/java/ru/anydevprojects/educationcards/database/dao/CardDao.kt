@@ -13,23 +13,23 @@ interface CardDao {
     @Insert
     suspend fun insertAll(cards: List<CardEntity>)
 
-    @Query("SELECT * FROM cardentity WHERE uid IN (:cardId)")
-    suspend fun getCardById(cardId: String): CardEntity
+    @Query("SELECT * FROM cardentity WHERE id IN (:cardId)")
+    suspend fun getCardById(cardId: Long): CardEntity
 
     @Query("SELECT * FROM cardentity WHERE deck_id IN (:deckId)")
-    suspend fun getAllCardByDeckId(deckId: String): List<CardEntity>
+    suspend fun getAllCardByDeckId(deckId: Long): List<CardEntity>
 
     @Query("SELECT * FROM cardentity WHERE deck_id IN (:deckId) LIMIT :countCards")
-    suspend fun getSomeCardsByDeckId(deckId: String, countCards: Int): List<CardEntity>
+    suspend fun getSomeCardsByDeckId(deckId: Long, countCards: Int): List<CardEntity>
 
     @Query("SELECT * FROM cardentity WHERE deck_id IN (:deckId)")
-    fun getAllCardByDeckIdFlow(deckId: String): Flow<List<CardEntity>>
+    fun getAllCardByDeckIdFlow(deckId: Long): Flow<List<CardEntity>>
 
-    @Query("UPDATE cardentity SET front = :front, back = :back WHERE uid IN (:cardId)")
-    suspend fun updateById(cardId: String, front: String, back: String)
+    @Query("UPDATE cardentity SET front = :front, back = :back WHERE id IN (:cardId)")
+    suspend fun updateById(cardId: Long, front: String, back: String)
 
-    @Query("DELETE FROM cardentity WHERE uid IN (:cardId)")
-    suspend fun deleteById(cardId: String)
+    @Query("DELETE FROM cardentity WHERE id IN (:cardId)")
+    suspend fun deleteById(cardId: Long)
 
     @Delete
     suspend fun delete(cardEntity: CardEntity)

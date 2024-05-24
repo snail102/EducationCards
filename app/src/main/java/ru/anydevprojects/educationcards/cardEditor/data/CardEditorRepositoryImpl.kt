@@ -7,21 +7,21 @@ import ru.anydevprojects.educationcards.domain.models.Card
 class CardEditorRepositoryImpl(
     private val cardDao: CardDao
 ) : CardEditorRepository {
-    override suspend fun getCardById(cardId: String): Card {
+    override suspend fun getCardById(cardId: Long): Card {
         val cardEntity = cardDao.getCardById(cardId = cardId)
 
         return Card(
-            id = cardEntity.uid,
+            id = cardEntity.id,
             front = cardEntity.front,
             back = cardEntity.back
         )
     }
 
-    override suspend fun deleteCard(cardId: String) {
+    override suspend fun deleteCard(cardId: Long) {
         cardDao.deleteById(cardId = cardId)
     }
 
-    override suspend fun updateCard(cardId: String, front: String, back: String) {
+    override suspend fun updateCard(cardId: Long, front: String, back: String) {
         cardDao.updateById(cardId = cardId, front = front, back = back)
     }
 }

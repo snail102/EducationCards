@@ -15,20 +15,20 @@ class DeckViewerRepositoryImpl(
     private val deckDao: DeckDao,
     private val cardDao: CardDao
 ) : DeckViewerRepository {
-    override fun getDeckById(deckId: String): Flow<DeckInfo> {
+    override fun getDeckById(deckId: Long): Flow<DeckInfo> {
         return deckDao.findByIdFlow(id = deckId).flowOn(Dispatchers.IO).map {
             DeckInfo(
-                id = it.uid,
+                id = it.id,
                 name = it.name
             )
         }
     }
 
-    override fun getCardForDeck(deckId: String): Flow<List<Card>> {
+    override fun getCardForDeck(deckId: Long): Flow<List<Card>> {
         return cardDao.getAllCardByDeckIdFlow(deckId = deckId).flowOn(Dispatchers.IO).map { cards ->
             cards.map {
                 Card(
-                    id = it.uid,
+                    id = it.id,
                     front = Jsoup.parse(it.front).text(),
                     back = it.back
                 )

@@ -8,10 +8,10 @@ class StudyCardsRepositoryImpl(
     private val cardDao: CardDao
 ) : StudyCardsRepository {
 
-    override suspend fun getCardsForStudyFromDeck(deckId: String, countCards: Int): List<Card> {
+    override suspend fun getCardsForStudyFromDeck(deckId: Long, countCards: Int): List<Card> {
         return cardDao.getSomeCardsByDeckId(deckId, countCards).map {
             Card(
-                id = it.uid,
+                id = it.id,
                 back = it.back,
                 front = it.front
             )

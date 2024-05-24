@@ -13,7 +13,6 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.io.InputStream
-import java.util.UUID
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
 import ru.anydevprojects.educationcards.database.dao.CardDao
@@ -94,18 +93,15 @@ class ImportDeckRepositoryImpl(
                 path = filePath,
                 cardList = dataList
             )
-            val deckId = UUID.randomUUID().toString()
             val deckEntity = DeckEntity(
-                uid = deckId,
                 name = dataFromDb.name,
                 path = dataFromDb.path
             )
-            deckDao.insert(deckEntity)
+            val deckId = deckDao.insert(deckEntity)
 
             cardDao.insertAll(
                 dataFromDb.cardList.map {
                     CardEntity(
-                        uid = UUID.randomUUID().toString(),
                         deckId = deckId,
                         front = it.front,
                         back = it.back

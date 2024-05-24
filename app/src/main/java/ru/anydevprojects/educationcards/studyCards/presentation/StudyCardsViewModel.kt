@@ -13,7 +13,7 @@ import ru.anydevprojects.educationcards.studyCards.presentation.models.IntentStu
 import ru.anydevprojects.educationcards.studyCards.presentation.models.StateStudyCards
 
 class StudyCardsViewModel(
-    private val deckId: String,
+    private val deckId: Long,
     private val studyCardsRepository: StudyCardsRepository
 ) :
     ViewModel(),

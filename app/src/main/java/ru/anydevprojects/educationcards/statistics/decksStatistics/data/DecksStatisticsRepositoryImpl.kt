@@ -9,8 +9,6 @@ class DecksStatisticsRepositoryImpl(
 ) : DecksStatisticsRepository {
 
     override suspend fun getAllDecksStatistics(): List<DeckStatistics> {
-        deckStatisticsDao.getAllDeckStatistics().map {
-            it.
-        }
+        return TODO()
     }
 }

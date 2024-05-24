@@ -44,7 +44,7 @@ import ru.anydevprojects.educationcards.core.mvi.CollectEvent
 @OptIn(ExperimentalMaterial3Api::class, ExperimentalLayoutApi::class)
 @Composable
 fun CardEditorScreen(
-    cardId: String,
+    cardId: Long,
     viewModel: CardEditorViewModel = koinViewModel(
         parameters = {
             parametersOf(cardId)

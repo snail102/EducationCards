@@ -51,7 +51,7 @@ class MyDecksViewModel(
         }
     }
 
-    private fun openDeck(deckId: String, deckName: String) {
+    private fun openDeck(deckId: Long, deckName: String) {
         viewModelScope.launch {
             emitEvent(EventMyDecks.OpenDeck(deckId = deckId, deckName = deckName))
         }

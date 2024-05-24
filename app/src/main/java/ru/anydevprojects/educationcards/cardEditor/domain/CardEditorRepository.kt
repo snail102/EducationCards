@@ -4,9 +4,9 @@ import ru.anydevprojects.educationcards.domain.models.Card
 
 interface CardEditorRepository {
 
-    suspend fun getCardById(cardId: String): Card
+    suspend fun getCardById(cardId: Long): Card
 
-    suspend fun deleteCard(cardId: String)
+    suspend fun deleteCard(cardId: Long)
 
-    suspend fun updateCard(cardId: String, front: String, back: String)
+    suspend fun updateCard(cardId: Long, front: String, back: String)
 }

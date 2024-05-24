@@ -13,7 +13,7 @@ class MyDecksRepositoryImpl(
         return deckDao.getAllDecks().map {
             it.map { deckEntity ->
                 Deck(
-                    id = deckEntity.uid,
+                    id = deckEntity.id,
                     name = deckEntity.name,
                     cards = emptyList()
                 )

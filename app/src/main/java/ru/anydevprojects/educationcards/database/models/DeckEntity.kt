@@ -5,7 +5,7 @@ import androidx.room.PrimaryKey
 
 @Entity
 data class DeckEntity(
-    @PrimaryKey val uid: String,
+    @PrimaryKey(autoGenerate = true) val id: Long = 0,
     val name: String,
     val path: String
 )

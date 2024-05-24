@@ -33,7 +33,7 @@ fun RootBottomNavGraph(navController: NavHostController, rootNavController: NavH
             MyDecksScreen(navController = rootNavController)
         }
         composable(route = Screens.Profile.route) {
-            ProfileScreen()
+            ProfileScreen(navController = rootNavController)
         }
     }
 }

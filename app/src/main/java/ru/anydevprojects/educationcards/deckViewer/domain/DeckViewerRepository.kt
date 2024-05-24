@@ -5,7 +5,7 @@ import ru.anydevprojects.educationcards.domain.models.Card
 import ru.anydevprojects.educationcards.domain.models.DeckInfo
 
 interface DeckViewerRepository {
-    fun getDeckById(deckId: String): Flow<DeckInfo>
+    fun getDeckById(deckId: Long): Flow<DeckInfo>
 
-    fun getCardForDeck(deckId: String): Flow<List<Card>>
+    fun getCardForDeck(deckId: Long): Flow<List<Card>>
 }

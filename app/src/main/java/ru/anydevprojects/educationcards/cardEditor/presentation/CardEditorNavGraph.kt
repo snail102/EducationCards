@@ -21,7 +21,7 @@ fun NavGraphBuilder.cardEditorNavGraph(navController: NavController) {
                 }
             )
         ) { backStackEntry ->
-            val cardId = backStackEntry.arguments?.getString(
+            val cardId = backStackEntry.arguments?.getLong(
                 Screens.CardEditor.cardIdArg
             ) ?: throw Exception("Empty argument cardId")
 

@@ -36,7 +36,7 @@ import ru.anydevprojects.educationcards.domain.models.Card
 
 @Composable
 fun DeckViewerScreen(
-    deckId: String,
+    deckId: Long,
     deckName: String,
     navController: NavController,
     viewModel: DeckViewerViewModel = koinViewModel(

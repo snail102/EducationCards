@@ -7,6 +7,7 @@ import ru.anydevprojects.educationcards.deckViewer.di.deckViewerModule
 import ru.anydevprojects.educationcards.importDeck.di.importDeckModule
 import ru.anydevprojects.educationcards.myDecks.di.myDecksModule
 import ru.anydevprojects.educationcards.profile.di.profileModule
+import ru.anydevprojects.educationcards.statistics.cardsStatistics.di.cardsStatisticsModule
 import ru.anydevprojects.educationcards.statistics.decksStatistics.di.decksStatisticsModule
 import ru.anydevprojects.educationcards.studyCards.di.studyCardsModule
 
@@ -19,6 +20,7 @@ val appModule = module {
         deckViewerModule,
         cardEditorModule,
         studyCardsModule,
-        decksStatisticsModule
+        decksStatisticsModule,
+        cardsStatisticsModule
     )
 }

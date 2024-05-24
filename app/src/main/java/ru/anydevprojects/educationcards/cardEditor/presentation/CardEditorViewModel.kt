@@ -11,7 +11,7 @@ import ru.anydevprojects.educationcards.core.mvi.MVI
 import ru.anydevprojects.educationcards.core.mvi.mvi
 
 class CardEditorViewModel(
-    private val cardId: String,
+    private val cardId: Long,
     private val cardEditorRepository: CardEditorRepository
 ) : ViewModel(),
     MVI<StateCardEditor, IntentCardEditor, EventCardEditor> by mvi(

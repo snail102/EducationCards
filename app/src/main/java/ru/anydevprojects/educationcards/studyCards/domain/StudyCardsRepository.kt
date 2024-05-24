@@ -4,5 +4,5 @@ import ru.anydevprojects.educationcards.domain.models.Card
 
 interface StudyCardsRepository {
 
-    suspend fun getCardsForStudyFromDeck(deckId: String, countCards: Int): List<Card>
+    suspend fun getCardsForStudyFromDeck(deckId: Long, countCards: Int): List<Card>
 }

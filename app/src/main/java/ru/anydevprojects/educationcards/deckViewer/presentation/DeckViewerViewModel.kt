@@ -13,7 +13,7 @@ import ru.anydevprojects.educationcards.deckViewer.presentation.models.StateDeck
 
 class DeckViewerViewModel(
     private val deckViewerRepository: DeckViewerRepository,
-    private val deckId: String,
+    private val deckId: Long,
     private val deckName: String
 ) :
     ViewModel(),
